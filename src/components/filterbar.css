@@ -1,0 +1,82 @@
+.filterbar{
+    width: 70%;
+    min-height: 100vh;
+    background-color: var(--cyan);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(-100%);
+    border: thin solid var(--strongred);
+}
+@media screen and (min-width:30em) {
+    .filterbar{
+        width: 50%;
+    }
+}
+@media screen and (min-width:48em) {
+    .filterbar{
+        width: 200px;
+        
+    }
+}
+@media screen and (min-width:62em) {
+    .filterbar{
+        transform: translateX(0);
+        z-index: 0;
+        background-color: wheat;
+        border: none;
+    }
+}
+.filterbar--show{
+    animation: showmenu 2s ease-out forwards;
+}
+@keyframes showmenu{
+    0%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-50%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+.filterbar__logo{
+    width: 220px;
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+.filterbar span{
+    color: white;
+   
+}
+@media screen and (min-width:62em) {
+    .filterbar__title{
+        color: var(--cyan);
+    }
+    .filterbar span{
+        color:var(--softred)
+    }
+}
+.filterbar__option{
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    border-bottom: thick solid white;
+    text-align: start;
+    padding: 0.2rem;
+}
+.filterbar input{
+    width: 20px;
+    height: 20px;
+    border: none;
+    color: var(--softred);
+}

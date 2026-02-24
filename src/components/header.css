@@ -1,0 +1,46 @@
+.header{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+.header__logo{
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    object-position: center;
+}
+.header__scart{
+    width: 100px;
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header svg{
+    width: 40px;
+    height: 40px;
+    fill: var(--cyan);
+    cursor: pointer;
+}
+.headerredecircle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top:1px;
+    left: 55px;
+    visibility: hidden;
+    opacity: 0;
+}
+.headerredecircle--show{
+    visibility: visible;
+    opacity: 1;
+}

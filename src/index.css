@@ -1,0 +1,20 @@
+html {
+  	box-sizing: border-box;
+	font-size:16px;
+	scroll-behavior: smooth;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+:root{
+  --cyan:#67B2D8;
+  --softred:#BF124D;
+  --mred:#76153C;
+  --strongred:#5A0E24;
+  --orange:#F8843F;
+}

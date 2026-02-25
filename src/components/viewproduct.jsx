@@ -169,8 +169,10 @@ if(singleprod === ''){
                         
                     </div>
                     <p><b>Price:</b>${pricecalc}</p>
-                    <button data-id={singleprod.id} onClick={handleaddtoshoppingcart}>Add to cart</button>
-                    <button>Go to Cart</button>
+                    <button className="viewproductmodal__btn" data-id={singleprod.id} onClick={handleaddtoshoppingcart}>Add to cart</button>
+                    <Link to='/cart'>
+                        <button className="viewproductmodal__btn" >Go to Cart</button>
+                    </Link>
                 </section>
                 
             </aside>}

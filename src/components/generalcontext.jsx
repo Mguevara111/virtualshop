@@ -18,7 +18,8 @@ const initialgeneralstate={
     isloaded:false,     //si aparece el spinner de carga o no mientras carga
     filters:[],     //los filtros
     scart:JSON.parse(localStorage.getItem('scartreact')) || [],        //el lo que guarda shopping cart
-    seepoint:!localStorage.getItem('scartreact')?false:true
+    seepoint:!localStorage.getItem('scartreact')?false:true,
+    datatosearch:''             //dato que busca datalist
 };
 
 export const Catalogcontext=createContext();

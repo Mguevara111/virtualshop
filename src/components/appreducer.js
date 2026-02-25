@@ -110,6 +110,13 @@ export function appreducer(state,action){
             seepoint:action.payload?true:false
         }
 
+        case 'put_for_search':
+        
+        return {
+            ...state,
+            datatosearch:action.payload
+        }
+
         default:
         return state;
     }

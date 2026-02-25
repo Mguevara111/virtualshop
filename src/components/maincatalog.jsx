@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext,useRef,useState } from "react";
+import { useContext,useRef,useState,useEffect } from "react";
 import { Catalogcontext } from "./generalcontext";
 import { Individualcard } from "./individualcard";
 import { Filterbar } from "./filterbar";
@@ -8,8 +8,12 @@ import './maincatalog.css';
 export function Maincatalog(){
 
 const [showmenu,setShowmenu]=useState(false);
+const [datasearch,setdatasearch]=useState({});          //objeto completo a buscar
+
+
 const {generalstate}=useContext(Catalogcontext);    //destructuro el estado
-const {base,isloaded,filters}=generalstate;      //destructuro solo base
+const {base,isloaded,filters,datatosearch}=generalstate;      //destructuro solo base
+
 
 const categories=base.map(el=>el.category).sort();
 const cat=new Set(categories)
@@ -27,6 +31,16 @@ const handleburger=()=>{
     setShowmenu(false)
 }
 
+useEffect(()=>{
+    if(datatosearch){
+        const data=base.find(el=>el.id === datatosearch)
+        if(data){
+            setdatasearch(data)
+        }
+
+    }
+},[datatosearch])
+
 
 if(isloaded){
     return(
@@ -41,6 +55,26 @@ if(base.lenght === 0){
     return(
         <section>
             <h2>Base empty</h2>
+        </section>
+    );
+}
+
+if(datatosearch){
+    return(
+        <section className="maincatalog">
+            <Filterbar showmenu={showmenu}></Filterbar>
+            <article className="maincatalog__filterspace"></article>
+            
+            <div className="hamburger__container" >
+            <button ref={hamburgerbtn} className="hamburger hamburger--collapse" type="button" onClick={handleburger}>
+                <span className="hamburger-box" onClick={handleburger}>
+                <span className="hamburger-inner" onClick={handleburger}></span>
+                </span>
+            </button>
+            </div>
+            <section>
+                <Individualcard data={datasearch}></Individualcard>
+            </section>
         </section>
     );
 }

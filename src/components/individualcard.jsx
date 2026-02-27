@@ -21,8 +21,14 @@ const [image,setImage]=useState('');        //aqui ponemos la imagen si demora
     }
 
     useEffect(()=>{
+        ////////////////////////////revisar carga fotos
+        const loadimage=async()=>{
+            let ima=await data.image
+            setImage(ima)
+        }
+
         if(image === ''){
-            setImage(data.image)
+            loadimage()
         }
     },[data.image])
     

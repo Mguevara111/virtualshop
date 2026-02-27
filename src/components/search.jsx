@@ -11,21 +11,14 @@ const {base}=generalstate;
 
 const handlechangesearch=(e)=>{
     setDatatofind(e.target.value)
-    const searchdata=base.find(el=>el.title === String(e.target.value))
-
-    if(searchdata){
+    //console.log(e.target.value)
+    const searchdata=base.find(el=>el.title.trim() === String(e.target.value))
 
         dispatch({
             type:'put_for_search',
-            payload:searchdata.id
+            payload:searchdata?searchdata.id:''
         })
-    }else{
-        console.log('no search')
-        dispatch({
-            type:'put_for_search',
-            payload:''
-        })
-    }
+    
 }
 
 

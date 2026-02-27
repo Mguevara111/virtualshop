@@ -66,7 +66,6 @@ export function appreducer(state,action){
         return otherstate;
 
         case 'load_base':
-        //console.log(action.payload)
         
         return{
             ...state,
@@ -111,7 +110,7 @@ export function appreducer(state,action){
         }
 
         case 'put_for_search':
-        
+        //console.log('ps',action.payload)
         return {
             ...state,
             datatosearch:action.payload

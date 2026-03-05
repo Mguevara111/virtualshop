@@ -43,7 +43,7 @@ export function appreducer(state,action){
                 if(el.id === action.payload.id){
                     return{
                         ...el,
-                        quantity:action.payload.qty
+                        quantity:!action.payload.qty?'1':action.payload.qty
                     }
                 }else{
                     return el;

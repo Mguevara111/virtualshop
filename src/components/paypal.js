@@ -1,7 +1,7 @@
 // paypal-module.js
 
-export function initPayPalButton(listaProductos,totalAmount,tax, containerId,limpiacb,sm) {
-    
+export function initPayPalButton(listaProductos,totalAmount,tax, containerId,dispatch,navigate) {
+    console.warn('dato que llegan',listaProductos,totalAmount,tax)
     //totalamoun es el total que se envia
     //containerId es el contenedor donde estaran los botones '#paypal-button-container'
 
@@ -52,8 +52,8 @@ export function initPayPalButton(listaProductos,totalAmount,tax, containerId,lim
                 // Aquí podrías disparar un evento personalizado o una función de éxito
                 console.log("Pago exitoso:", details);
                 
-                localStorage.removeItem('pending_transaction');
-                limpiacb();
+                //localStorage.removeItem('pending_transaction');
+                //limpiacb();
                 
                 //aqui se deberia ver como borrar el form, cerrar el modal, vaciar localstorage
                 const transactionId = details.purchase_units[0].payments.captures[0].id;
@@ -62,32 +62,47 @@ export function initPayPalButton(listaProductos,totalAmount,tax, containerId,lim
                     client:details.payer, 
                     units:details.purchase_units
                 }
-                localStorage.setItem('lasttrans',JSON.stringify(detailobj))
-               window.location.href = "/thanks.html";
+                //localStorage.setItem('lasttrans',JSON.stringify(detailobj))
+               //window.location.href = "/thanks.html";
+               alert('pago exitoso')
+               navigate('/');   //para que vaya a la /
             })
             
             .catch(function(error) {
-                    sm({ 
-                        message: 'Were sorry, there was a technical problem processing your payment. Please try again.', 
-                        color: 'red',
-                        time:5 
-                    });
+                let sendmessage={ 
+                        text: 'Were sorry, there was a technical problem processing your payment. Please try again.', 
+                        color: 'red' 
+                }
+                dispatch({
+                    type:'set_message',
+                    payload:sendmessage
+                })
+                  
                 });
         },
         onCancel: function (data) {
-                    sm({
-                        message: 'The payment was cancelled. Your items are still in the cart.',
-                        color: 'orange',
-                        time:5
-                    });
+            let sendmessage={
+                text: 'The payment was cancelled. Your items are still in the cart.',
+                color: 'orange'
+            };
+            dispatch({
+                type:'set_message',
+                payload:sendmessage
+            })
+                    
+                        
+                    
         },
         onError: function(err) {
             console.error("Error en el flujo de PayPal:", err);
-            sm({
-                message: 'The transaction was interrupted or could not be completed. Please verify your payment method or try again.',
-                color: 'red',
-                time:5
-            });
+            let sendmessage={
+                text: 'The transaction was interrupted or could not be completed. Please verify your payment method or try again.',
+                color: 'red'
+            };
+            dispatch({
+                type:'set_message',
+                payload:sendmessage
+            })
         }
     }).render(containerId);
 }

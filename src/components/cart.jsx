@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { deletefromlocalstorage } from "./addlocalstorage";
 import { useState } from "react";
 import { changeqty } from "./addlocalstorage";
+import { Paypalbox } from "./paypalbox";
+import { initPayPalButton } from "./paypal";
+import { useNavigate } from "react-router-dom";
 import './cart.css';
 
 const tax=0.15;     //valor impuesto
@@ -19,10 +22,13 @@ export function Cart(){
 const valscart=useRef(false);       //evita que el primer renderizado se ejecute cangeqty
 const [editvalues,setEditvalues]=useState(initialeditvalues);    //valores a editar
 const [edit,setEdit]=useState(false);       //activa edicion
+//const [pay,setPay]=useState(false);         //si true muestra boton paypal
 
 
 const {generalstate,dispatch}=useContext(Catalogcontext);
 const {scart}=generalstate;
+
+const navigate=useNavigate();
 
 useEffect(()=>{
     if(!valscart.current){
@@ -124,6 +130,15 @@ const handlesubmit=()=>{
     setEditvalues(initialeditvalues)
 }
 
+const handlepay=()=>{
+    const total=scart.reduce((acum,el)=>{
+        acum+=parseFloat(el.unit_amount.value) * parseInt(el.quantity)
+        return acum;
+    },0)
+    
+    initPayPalButton(scart,String(total),String(tax), '#paypal-button-container',dispatch,navigate)
+}
+
 if(scart.length === 0 || !scart){
     return(
         <section>
@@ -197,7 +212,9 @@ function calctotal(){
                 <p><b>TOTAL:</b>${((calctotal() * tax) + calctotal()).toFixed(2)}</p>
             </div>
             </article>
+                    <button onClick={handlepay}>Pay</button>
             </article>
+                    <Paypalbox></Paypalbox>
         </section>
         
     );

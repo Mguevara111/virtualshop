@@ -55,6 +55,13 @@ export function appreducer(state,action){
             scart:newstatecart
         }
 
+        case 'empty_cart':
+
+            return{
+                ...state,
+                scart:[]
+            }
+
         case 'set_message':
             
 

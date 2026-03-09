@@ -10,7 +10,7 @@ import { initPayPalButton } from "./paypal";
 import { useNavigate } from "react-router-dom";
 import './cart.css';
 
-const tax=0.15;     //valor impuesto
+const tax=15;     //valor impuesto
 const qtyregex=/^(\s*|[1-9]\d*)$/;
 
 const initialeditvalues={
@@ -22,7 +22,7 @@ export function Cart(){
 const valscart=useRef(false);       //evita que el primer renderizado se ejecute cangeqty
 const [editvalues,setEditvalues]=useState(initialeditvalues);    //valores a editar
 const [edit,setEdit]=useState(false);       //activa edicion
-//const [pay,setPay]=useState(false);         //si true muestra boton paypal
+
 
 
 const {generalstate,dispatch}=useContext(Catalogcontext);
@@ -136,7 +136,7 @@ const handlepay=()=>{
         return acum;
     },0)
     
-    initPayPalButton(scart,String(total),String(tax), '#paypal-button-container',dispatch,navigate)
+    initPayPalButton(scart,String(total),(total*(tax/100)).toFixed(2), '#paypal-button-container',dispatch,navigate)
 }
 
 if(scart.length === 0 || !scart){
@@ -194,7 +194,7 @@ function calctotal(){
                             :
                             <td>{el.quantity}</td>}
                             <td>${el.unit_amount.value}</td>
-                            <td>${String((parseInt(el.unit_amount.value) * parseInt(el.quantity)).toFixed(2))}</td>
+                            <td>${String((parseFloat(el.unit_amount.value) * parseInt(el.quantity)).toFixed(2))}</td>
                             <td><button  className="cart__littlebtn" data-id={el.id} onClick={handleedit}>
                                 <svg className="cart__svg" data-id={el.id} xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path data-id={el.id}  d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                                 </button></td>
@@ -208,8 +208,8 @@ function calctotal(){
             <div>
                 {edit&&<button className="cart__submitbtn" onClick={handlesubmit}>Submit changes</button>}
                 <p><b>SUBTOTAL</b>${calctotal().toFixed(2)}</p>
-                <p><b>TAX:</b>{(calctotal() * tax).toFixed(2)}</p>
-                <p><b>TOTAL:</b>${((calctotal() * tax) + calctotal()).toFixed(2)}</p>
+                <p><b>TAX:</b>{(calctotal() * (tax/100)).toFixed(2)}</p>
+                <p><b>TOTAL:</b>${((calctotal() * (tax/100)) + calctotal()).toFixed(2)}</p>
             </div>
             </article>
                     <button onClick={handlepay}>Pay</button>

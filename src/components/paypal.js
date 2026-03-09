@@ -1,4 +1,5 @@
 // paypal-module.js
+import { emptylocalstorage } from "./addlocalstorage";
 
 export function initPayPalButton(listaProductos,totalAmount,tax, containerId,dispatch,navigate) {
     console.warn('dato que llegan',listaProductos,totalAmount,tax)
@@ -52,20 +53,23 @@ export function initPayPalButton(listaProductos,totalAmount,tax, containerId,dis
                 // Aquí podrías disparar un evento personalizado o una función de éxito
                 console.log("Pago exitoso:", details);
                 
-                //localStorage.removeItem('pending_transaction');
-                //limpiacb();
-                
-                //aqui se deberia ver como borrar el form, cerrar el modal, vaciar localstorage
-                const transactionId = details.purchase_units[0].payments.captures[0].id;
-                let detailobj={
-                    orderid:transactionId, 
-                    client:details.payer, 
-                    units:details.purchase_units
+                emptylocalstorage();
+                navigate('/');   //para que vaya a la /
+
+                dispatch({
+                    type:'empty_cart'
+                })
+
+                let sendmessage={ 
+                        text: 'Payment successfull.', 
+                        color: 'green' 
                 }
-                //localStorage.setItem('lasttrans',JSON.stringify(detailobj))
-               //window.location.href = "/thanks.html";
-               alert('pago exitoso')
-               navigate('/');   //para que vaya a la /
+                dispatch({
+                    type:'set_message',
+                    payload:sendmessage
+                })
+                
+                
             })
             
             .catch(function(error) {

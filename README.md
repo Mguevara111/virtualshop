@@ -1,16 +1,64 @@
-# React + Vite
+🛒 Virtual Market - React E-commerce
+English | Español
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+English
+📝 Description
+A functional e-commerce application built with React, featuring a complete shopping flow: from product discovery via an external API to a secure checkout experience using the PayPal SDK.
 
-Currently, two official plugins are available:
+🚀 Key Features
+Global State Management: Implemented using useReducer and useContext for a robust "Redux-like" architecture.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Product Catalog: Dynamic data fetching from Fake Store API.
 
-## React Compiler
+Shopping Cart: Full CRUD functionality (Add, Remove, Clear).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Persistent Data: Synchronization with localStorage to keep the cart and order history after page reloads.
 
-## Expanding the ESLint configuration
+Secure Checkout: Sandbox integration with PayPal Smart Payment Buttons.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Routing: Fluid navigation using react-router-dom.
+
+🛠️ Tech Stack
+Core: React.js, JavaScript (ES6+), HTML5, CSS3.
+
+State & Logic: Context API, useReducer, Hooks.
+
+Tools: React Router, PayPal SDK, LocalStorage API.
+
+⚙️ Installation
+Clone the repository.
+
+Install dependencies: npm install.
+
+Start the development server: npm run dev.
+
+Español
+📝 Descripción
+Una aplicación de comercio electrónico funcional construida con React, que presenta un flujo de compra completo: desde el descubrimiento de productos a través de una API externa hasta una experiencia de pago segura utilizando el SDK de PayPal.
+
+🚀 Características Principales
+Gestión de Estado Global: Implementada mediante useReducer y useContext para una arquitectura robusta tipo "Redux".
+
+Catálogo de Productos: Obtención dinámica de datos desde Fake Store API.
+
+Carrito de Compras: Funcionalidad CRUD completa (Agregar, Eliminar, Vaciar).
+
+Persistencia de Datos: Sincronización con localStorage para mantener el carrito y el historial de pedidos tras recargar la página.
+
+Pago Seguro: Integración de entorno de pruebas (Sandbox) con PayPal Smart Payment Buttons.
+
+Enrutamiento: Navegación fluida mediante react-router-dom.
+
+🛠️ Tecnologías Utilizadas
+Núcleo: React.js, JavaScript (ES6+), HTML5, CSS3.
+
+Estado y Lógica: Context API, useReducer, Hooks.
+
+Herramientas: React Router, SDK de PayPal, API de LocalStorage.
+
+⚙️ Instalación
+Clona el repositorio.
+
+Instala las dependencias: npm install.
+
+Inicia el servidor de desarrollo: npm run dev.

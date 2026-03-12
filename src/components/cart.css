@@ -75,3 +75,12 @@ table,tr,th,td{
     text-align: center;
     
 }
+.emptyclosebtn{
+    text-align: end;
+    margin: 0 1rem;
+}
+.empty__title{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}

@@ -142,12 +142,12 @@ const handlepay=()=>{
 if(scart.length === 0 || !scart){
     return(
         <section>
-            <div>
+            <div className="emptyclosebtn">
                 <Link to='/'>
-                    <button>X</button>
+                    <button className="cart__littlebtn">X</button>
                 </Link>
             </div>
-            <h2>The card is empty</h2>
+            <h2 className="empty__title">The card is empty</h2>
         </section>
     );
 }

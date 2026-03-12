@@ -1,0 +1,30 @@
+.E404{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/images/404.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    padding: 2rem;
+}
+.E404 > h2{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color:var(--cyan);
+    font-size: 3rem;
+}
+.E404 button{
+    width: 140px;
+    height: 30px;
+    border: none;
+    background-color: var(--softred);
+    color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+}

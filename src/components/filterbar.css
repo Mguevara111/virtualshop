@@ -61,6 +61,7 @@
 @media screen and (min-width:62em) {
     .filterbar__title{
         color: var(--cyan);
+        margin-top: 4rem;
     }
     .filterbar span{
         color:var(--softred)

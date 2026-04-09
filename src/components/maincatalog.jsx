@@ -51,10 +51,10 @@ if(isloaded){
     );
 }
 
-if(base.lenght === 0){
+if(base.length === 0){
     return(
-        <section>
-            <h2>Base empty</h2>
+        <section className="maincatalog__emptybase">
+            <h2>Fake api store dont respond or info is empty</h2>
         </section>
     );
 }

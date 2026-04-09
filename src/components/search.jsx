@@ -1,13 +1,20 @@
 import React from "react";
 import { useContext } from "react";
 import { Catalogcontext } from "./generalcontext";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export function Search(){
 const [datatofind,setDatatofind]=useState('');          //dato que se mandara a context, dato a buscar
 
 const {generalstate,dispatch}=useContext(Catalogcontext);
-const {base}=generalstate;
+const {base,datatosearch}=generalstate;
+
+/////////codigo nuevo revisar///////////////////////
+useEffect(()=>{
+    let datasearched=datatosearch||''
+    setDatatofind(datasearched)
+},[])
+
 
 const handlechangesearch=(e)=>{
     setDatatofind(e.target.value)

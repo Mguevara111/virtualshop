@@ -117,6 +117,7 @@ export function appreducer(state,action){
         }
 
         case 'put_for_search':
+        // pone el dato a buscar
         //console.log('ps',action.payload)
         return {
             ...state,

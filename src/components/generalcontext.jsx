@@ -52,19 +52,29 @@ useEffect(()=>{
 ///////////////////////////////////////////////////////////////////////////////
 
 useEffect(()=>{
+    //trae la info de fakeapistore
+    const controller=new AbortController()
+    const {signal}=controller
+    let tu;
+
     const getdata=async ()=>{
         try {
+            tu=setTimeout(()=>{
+                controller.abort()
+            },10000)
+
             dispatch({
                 type:'loadedtrue'
             })
-            let res=await fetch('https://fakestoreapi.com/products');
-            //console.log(res)
-            if(res.status !== 200){
-                const errorproduced={
-                    text:res.statusText || `There was an error  ${res.status} reading api fakestore`,
-                    color:'red'
-                }
-                throw errorproduced;
+            let res=await fetch('https://fakestoreapi.com/products',{signal});
+            console.log(res)
+            if(!res.ok){
+                // const errorproduced={
+                //     text:res.statusText || `There was an error  ${res.status} reading api fakestore`,
+                //     color:'red'
+                // }
+                let err=new Error(`There was an error  ${res.status} reading api fakestore`)
+                throw err
             }
 
             let dataforload=await res.json()
@@ -77,12 +87,19 @@ useEffect(()=>{
             })
             
         } catch (error) {
-            
+            let message=error.message==='Failed to fetch'&&'There was an error reading api fakestore'
+            let errosend={
+                text:message,
+                color:'red'
+            }
+
             dispatch({
                 type:'set_message',
-                payload:error
+                payload:errosend
             })
-            //console.log(error)
+            dispatch({
+                type:'loadedfalse'
+            })
            
             
         }
@@ -93,7 +110,10 @@ useEffect(()=>{
         getdata();
     }
 
-    
+    return ()=>{
+        controller.abort()
+        clearTimeout(tu)
+    }
 
 },[])
 
